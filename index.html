@@ -44,15 +44,20 @@
     <nav id="navbar">
         <div class="container nav-content">
             <a href="#" class="logo">IMAD<span>.FIT</span></a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#results">Results</a></li>
-                <li><a href="#booking">Book Now</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#booking" class="mobile-only-link">Book Now</a></li>
             </ul>
-            <a href="#booking" class="neon-btn" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Get Started</a>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="#booking" class="neon-btn desktop-only" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Get Started</a>
         </div>
     </nav>
 
@@ -396,6 +401,16 @@
                 Discipline in Morocco.</p>
         </div>
     </footer>
+
+    <!-- Mobile Sticky CTA Bar -->
+    <div class="mobile-cta-bar">
+        <a href="#booking" class="mobile-cta-btn booking">
+            <i data-lucide="calendar"></i> Book Session
+        </a>
+        <a href="https://wa.me/212721587115" class="mobile-cta-btn whatsapp">
+            <i data-lucide="message-circle"></i> WhatsApp
+        </a>
+    </div>
 
     <script src="script.js"></script>
     <script>

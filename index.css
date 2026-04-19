@@ -469,16 +469,190 @@ footer {
     animation: pulse 2s infinite;
 }
 
-/* Mobile Responsive */
+/* Mobile Navigation & UI */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: var(--neon-green);
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 5px var(--neon-green-glow);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.mobile-only-link {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
+/* Mobile Sticky CTA Bar */
+.mobile-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid var(--glass-border);
+    padding: 1rem;
+    z-index: 999;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+
+.mobile-cta-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition-smooth);
+}
+
+.mobile-cta-btn.booking {
+    background: var(--neon-green);
+    color: #000;
+}
+
+.mobile-cta-btn.whatsapp {
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    color: var(--neon-green);
+}
+
+/* Base Responsive */
 @media (max-width: 968px) {
-    h1 { font-size: 3rem; }
-    .hero-bg { width: 100%; right: 0; opacity: 0.4; }
-    .hero-bg::after { background: radial-gradient(circle, transparent, var(--bg-dark)); }
-    .nav-links { display: none; }
+    .container { padding: 0 1.5rem; }
+    .section-padding { padding: 6rem 0; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only-link {
+        display: block;
+        color: var(--neon-green);
+    }
+
+    h1 { font-size: 3.5rem; line-height: 1.1; }
+    .hero-bg { opacity: 0.3; }
+    
+    .services-grid, .results-grid, .matrix-grid, .insta-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 576px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    .section-padding { padding: 4rem 0; }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    .section-padding { padding: 4rem 0 6rem 0; } /* Extra padding for bottom cta bar */
+    
+    .hero {
+        text-align: center;
+        padding-top: 10rem;
+    }
+    
+    .hero-content {
+        align-items: center;
+    }
+    
+    .hero-content div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .neon-btn {
+        width: 100%;
+        text-align: center;
+        padding: 1.2rem 2rem;
+    }
+    
+    .mobile-cta-bar {
+        display: flex;
+    }
+    
+    /* Touch target improvements */
+    .glass {
+        padding: 2.5rem 1.5rem !important;
+    }
+    
+    .service-card, .result-card, .matrix-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .matrix-values {
+        font-size: 2rem;
+    }
+}
+
+/* Optimization for modern mobile GPUs */
+.reveal, .mobile-cta-bar, .menu-toggle span {
+    will-change: transform, opacity;
 }
