@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://doaegallae12-stack.github.io/imad-fitness-coach/sitemap.xml
