@@ -634,8 +634,9 @@ nav.scrolled {
     background: radial-gradient(circle, var(--neon-green-glow) 0%, transparent 70%);
     border-radius: 50%;
     animation: float 6s ease-in-out infinite;
-    z-index: -1;
+    z-index: 3;
     animation-delay: 0s;
+    pointer-events: none;
 }
 
 .hero::after {
@@ -648,8 +649,9 @@ nav.scrolled {
     background: radial-gradient(circle, var(--neon-green-glow) 0%, transparent 70%);
     border-radius: 50%;
     animation: float 8s ease-in-out infinite;
-    z-index: -1;
+    z-index: 3;
     animation-delay: 2s;
+    pointer-events: none;
 }
 
 /* Additional Floating Orbs */
@@ -663,8 +665,9 @@ nav.scrolled {
     background: radial-gradient(circle, rgba(57, 255, 20, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     animation: float 7s ease-in-out infinite;
-    z-index: -1;
+    z-index: 3;
     animation-delay: 1s;
+    pointer-events: none;
 }
 
 .hero-content::after {
@@ -677,8 +680,9 @@ nav.scrolled {
     background: radial-gradient(circle, rgba(57, 255, 20, 0.1) 0%, transparent 70%);
     border-radius: 50%;
     animation: float 9s ease-in-out infinite;
-    z-index: -1;
+    z-index: 3;
     animation-delay: 3s;
+    pointer-events: none;
 }
 
 .hero-img {
@@ -687,6 +691,164 @@ nav.scrolled {
     object-fit: cover;
     opacity: 0.95;
     filter: brightness(1.2);
+}
+
+/* Smoke/Fog Overlay Effects */
+.smoke-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.smoke-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(57, 255, 20, 0.08) 0%, transparent 70%);
+    animation: smokeFloat 20s ease-in-out infinite;
+    mix-blend-mode: screen;
+}
+
+.smoke-1 {
+    top: -50%;
+    left: -50%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.smoke-2 {
+    top: -30%;
+    left: -70%;
+    animation-delay: -5s;
+    animation-duration: 30s;
+    opacity: 0.6;
+}
+
+.smoke-3 {
+    top: -70%;
+    left: -30%;
+    animation-delay: -10s;
+    animation-duration: 35s;
+    opacity: 0.4;
+}
+
+.smoke-4 {
+    top: -40%;
+    left: -60%;
+    animation-delay: -15s;
+    animation-duration: 28s;
+    opacity: 0.5;
+}
+
+@keyframes smokeFloat {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(10%, 15%) rotate(90deg) scale(1.1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-5%, 10%) rotate(180deg) scale(1.2);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translate(-15%, -5%) rotate(270deg) scale(1.15);
+        opacity: 0.6;
+    }
+}
+
+/* Fog Layers */
+.fog-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.fog-bottom {
+    bottom: 0;
+    top: auto;
+    height: 40%;
+    background: linear-gradient(to top, 
+        rgba(10, 10, 10, 0.9) 0%, 
+        rgba(10, 10, 10, 0.6) 30%, 
+        rgba(57, 255, 20, 0.05) 60%,
+        transparent 100%);
+    animation: fogPulse 8s ease-in-out infinite;
+}
+
+.fog-top {
+    top: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, 
+        rgba(10, 10, 10, 0.8) 0%, 
+        rgba(57, 255, 20, 0.03) 40%,
+        transparent 100%);
+    animation: fogPulse 10s ease-in-out infinite reverse;
+}
+
+@keyframes fogPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scaleY(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scaleY(1.1);
+    }
+}
+
+/* Atmospheric haze over video */
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 70%, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(57, 255, 20, 0.08) 0%, transparent 50%);
+    animation: hazeMove 15s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes hazeMove {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.5;
+    }
+    33% {
+        transform: translate(5%, -5%);
+        opacity: 0.7;
+    }
+    66% {
+        transform: translate(-5%, 5%);
+        opacity: 0.6;
+    }
+}
+
+/* Enhanced gradient overlay for cinematic look */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to right, var(--bg-dark) 0%, rgba(10, 10, 10, 0.7) 40%, transparent 70%),
+        linear-gradient(to top, rgba(10, 10, 10, 0.8) 0%, transparent 50%);
+    z-index: 2;
 }
 
 /* Services Grid */
@@ -1710,6 +1872,7 @@ footer {
 @media (max-width: 968px) {
     .container {
         padding: 0 1.5rem;
+        max-width: 100%;
     }
 
     .section-padding {
@@ -1732,6 +1895,7 @@ footer {
         gap: 2.5rem;
         transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
+        padding: 2rem;
     }
 
     .nav-links.active {
@@ -1757,12 +1921,28 @@ footer {
     }
 
     h1 {
-        font-size: 3.5rem;
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
         line-height: 1.1;
     }
 
+    h2 {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 8rem 0 4rem;
+    }
+
     .hero-bg {
-        opacity: 0.8;
+        width: 100%;
+        opacity: 0.3;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
     }
 
     .services-grid,
@@ -1770,14 +1950,15 @@ footer {
     .matrix-grid,
     .transformation-grid,
     .pricing-grid,
-    .testimonials-grid {
+    .testimonials-grid,
+    .resume-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 220px;
+        grid-auto-rows: 200px;
     }
 
     .gallery-item-large {
@@ -1788,72 +1969,201 @@ footer {
     .gallery-item-wide {
         grid-column: span 2;
     }
+
+    .coaching-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-form {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-group.grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Disable floating orbs on mobile for better performance */
+    .floating-orb {
+        display: none;
+    }
+
+    .glow-line {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {
+    * {
+        max-width: 100%;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
     h1 {
         font-size: clamp(2rem, 10vw, 2.8rem);
         line-height: 1.1;
+        word-wrap: break-word;
     }
 
     h2 {
         font-size: clamp(1.8rem, 8vw, 2.2rem);
     }
 
+    h3 {
+        font-size: clamp(1.3rem, 5vw, 1.5rem);
+    }
+
     .section-padding {
-        padding: 4rem 0 6rem 0;
+        padding: 3rem 0 5rem 0;
     }
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 180px;
-        gap: 0.6rem;
+    .container {
+        padding: 0 1rem;
+        width: 100%;
     }
 
-    .gallery-item-large {
-        grid-row: span 2;
-    }
-
-    /* Extra padding for bottom cta bar */
-
+    /* Hero Section Mobile */
     .hero {
         text-align: center;
-        padding-top: 10rem;
+        padding-top: 6rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
     }
 
     .hero-content {
         align-items: center;
+        width: 100%;
     }
 
-    .hero-content div {
+    .hero-content > div {
         display: flex;
         flex-direction: column;
         width: 100%;
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem !important;
     }
 
     .neon-btn {
         width: 100%;
         text-align: center;
-        padding: 1.2rem 2rem;
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
     }
 
+    /* Gallery Mobile */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 250px;
+        gap: 1rem;
+    }
+
+    .gallery-item-large,
+    .gallery-item-wide {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    /* Mobile CTA Bar */
     .mobile-cta-bar {
         display: flex;
     }
 
     /* Touch target improvements */
     .glass {
-        padding: 2.5rem 1.5rem !important;
+        padding: 2rem 1.2rem !important;
+        margin: 0 0.5rem;
     }
 
     .service-card,
     .result-card,
-    .matrix-card {
-        padding: 2rem 1.5rem;
+    .matrix-card,
+    .testimonial-card,
+    .pricing-card,
+    .resume-card {
+        padding: 1.5rem 1.2rem;
     }
 
     .matrix-values {
         font-size: 2rem;
+    }
+
+    /* About Section */
+    #about .glass {
+        padding: 2rem 1.2rem !important;
+    }
+
+    /* Booking Form */
+    .booking-form {
+        padding: 1.5rem 1rem;
+    }
+
+    /* Resume Cards */
+    .resume-grid {
+        gap: 1.5rem;
+    }
+
+    .timeline-list li {
+        padding-left: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 0 6rem;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* Disable 3D tilt on mobile */
+    .service-card:hover,
+    .pricing-card:hover,
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Reduce animations on mobile */
+    .testimonial-card {
+        animation: none;
+    }
+
+    /* Pricing Card */
+    .pricing-card.featured {
+        transform: scale(1);
+        margin: 1rem 0;
+    }
+
+    .price {
+        font-size: 2.5rem;
+    }
+
+    /* FAQ */
+    .faq-question {
+        padding: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .faq-answer {
+        padding: 0 1.2rem 1.2rem;
     }
 }
 
@@ -1862,6 +2172,75 @@ footer {
 .mobile-cta-bar,
 .menu-toggle span {
     will-change: transform, opacity;
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    img, video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .hero-video {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    /* Prevent horizontal scroll */
+    .container {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Make all grids single column on smaller tablets */
+    .services-grid,
+    .matrix-grid,
+    .testimonials-grid,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Resume section mobile */
+    .resume-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem !important;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    .neon-btn {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .glass {
+        padding: 1.5rem 1rem !important;
+    }
 }
 
 /* Responsive for Testimonials & Pricing */
